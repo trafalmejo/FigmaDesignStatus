@@ -1,0 +1,43 @@
+<style>
+  body {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+  }
+</style>
+<h2>Label Creator</h2>
+<input type="radio" id="SOT" name="label" value="0" />
+<label for="SOT">SOT</label><br />
+<input type="radio" id="previous" name="label" value="1" />
+<label for="previous">Previous design</label><br />
+<input type="radio" id="abtest" name="label" value="2" />
+<label for="abtest">A/B Test</label><br />
+<input type="radio" id="deprecated" name="label" value="3" />
+<label for="deprecated">Deprecated</label>
+<br />
+<br />
+
+<input type="date" id="date" value="3-6-2022" />
+<br /><br />
+<button id="create">Label Frame</button>
+<button id="cancel">Cancel</button>
+<script>
+  const date = document.getElementById("date");
+  let today = new Date();
+  let format = today.toISOString().split("T")[0];
+  console.log({ format });
+  date.defaultValue = format;
+
+  document.getElementById("create").onclick = () => {
+    const labels = document.getElementsByName("label");
+
+    let selected = Array.from(labels).find((label) => label.checked);
+    let value = selected ? selected.value : "none";
+    let data = { value: value, date: date.value };
+
+    parent.postMessage({ pluginMessage: { type: "label", data } }, "*");
+  };
+
+  document.getElementById("cancel").onclick = () => {
+    parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+  };
+</script>
