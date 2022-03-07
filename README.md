@@ -1,4 +1,4 @@
-This plugin allows to label frames in order to keeo track of SOT, Previous versions, A/B Testing, and Deprecated
+This plugin allows to label frames in order to keeo[track of SOT, Previous versions, A/B Testing, and Deprecated versions
 
 Below are the steps to get your plugin running. You can also find instructions at:
 
